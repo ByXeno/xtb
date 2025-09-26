@@ -1,4 +1,3 @@
-
 #ifndef XTB_LOG_H_
 #define XTB_LOG_H_
 
@@ -32,11 +31,11 @@ void log_init_output(void);
     do { \
         log_init_output(); \
         if ((level) >= threshold_level) { \
-            log_write_level_color(level); \
-            log_write_time(); \
-	    fprintf(out,"[%s:%d] [%s] ",__FILE__,__LINE__,log_level_str[level]);\
-            fprintf(out, __VA_ARGS__); \
-            fprintf(out,"\x1b[0m\n"); \
+        log_write_level_color(level); \
+        log_write_time(); \
+        fprintf(out,"[%s:%d] [%s] ",__FILE__,__LINE__,log_level_str[level]);\
+        fprintf(out, __VA_ARGS__); \
+        fprintf(out,"\x1b[0m\n"); \
         } \
         if ((level) == log_fatal) exit(1); \
     } while(0)
@@ -67,13 +66,13 @@ void log_write_level_color
 {
     switch(level)
     {
-	case log_trace: fprintf(out, "\x1b[37m"); break; // White
+        case log_trace: fprintf(out, "\x1b[37m"); break; // White
         case log_debug: fprintf(out, "\x1b[36m"); break; // Cyan
         case log_info:  fprintf(out, "\x1b[32m"); break; // Green
         case log_warn:  fprintf(out, "\x1b[33m"); break; // Yellow
         case log_error: fprintf(out, "\x1b[31m"); break; // Red
         case log_fatal: fprintf(out, "\x1b[41m\x1b[37m"); break; // White on Red background
-	default: printf("Unknown log level");exit(1);
+        default: printf("Unknown log level");exit(1);
     }
 }
 

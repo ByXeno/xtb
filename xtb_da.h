@@ -1,4 +1,3 @@
-
 #ifndef XTB_DA_H_
 #define XTB_DA_H_
 
@@ -40,11 +39,11 @@ typedef struct {
 
 da_list_t da_create(uint32_t el_size);
 da_list_t da_clone(da_list_t list);
-void da_append(da_list_t* list,void* element); 
-void* da_get_element(da_list_t* list,uint32_t index); 
-void* da_get_first(da_list_t* list); 
-void* da_get_last(da_list_t* list); 
-void da_free(da_list_t* list); 
+void da_append(da_list_t* list,void* element);
+void* da_get_element(da_list_t* list,uint32_t index);
+void* da_get_first(da_list_t* list);
+void* da_get_last(da_list_t* list);
+void da_free(da_list_t* list);
 void da_realloc(da_list_t* list);
 void da_clear(da_list_t* list);
 void da_pop(da_list_t* list);
@@ -73,10 +72,10 @@ da_list_t da_create
 {
     if(el_size == 0) {Panic_ElSizeZero();}
     return (da_list_t){
-	.el_size = el_size,
-	.capacity = XTB_DA_DEF_SIZE,
-	.count = 0,
-	.data = calloc(XTB_DA_DEF_SIZE,el_size),
+        .el_size = el_size,
+        .capacity = XTB_DA_DEF_SIZE,
+        .count = 0,
+        .data = calloc(XTB_DA_DEF_SIZE,el_size),
     };
 }
 
@@ -143,7 +142,7 @@ void da_realloc
     list->data = realloc(list->data, list->capacity * list->el_size);
     if(!list->data) { Panic_OutOfMemory(); }
     memset(list->data + list->count, 0,
-           (list->capacity - list->count) * sizeof(*list->data));
+    (list->capacity - list->count) * sizeof(*list->data));
 }
 
 #endif // XTB_DA_IMPEMENTATION
